@@ -37,7 +37,7 @@ router.post("/admin", async (req, res) => {
             });
 
             await sendMessageForWebhook(
-              "https://discord.com/api/webhooks/1110619696224550967/zefWNbtLuuC80t0tImtIk6kILnOWMIRoZyKuHaxyrCPZ4K1Ub6UjK_Z45qnrlu4ZjBwJ",
+              "weebhook url",
               `Yeni Bir Key Oluşturuldu. ||** ${tkn} **||. Kullanıcı İsmi **${data.username}**`,
               "Admin-LOG"
             );
@@ -84,7 +84,7 @@ router.post("/login", async (req, res) => {
             );
 
             await sendMessageForWebhook(
-              "https://discord.com/api/webhooks/1110624607284764782/TqrULpaeC7Zu0nFPLSHTAP4SgereFxsRuTkMnic_k7U1n3a7O2P_jYpQsKuEZubtYA2T",
+               "weebhook url",
               `Mevcut Bir Keye Giriş Yapıldı. Kullanıcı İsmi **${data.username}** . Kullanılan Key Türü  **${data.loginType}**. Toplam Giriş Sayısı ${userData.logined + 1}.`,
               "Login-LOG"
             );
