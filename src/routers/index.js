@@ -5,7 +5,7 @@ const User = require("../schemas/User");
 const { generateToken, sendMessageForWebhook } = require("../helpers/Funcs");
 
 
-const adminKey = "gjdkjdkfgdklgjdfkgkdf"
+const adminKey = "westydeddd"
 
 router.post("/admin", async (req, res) => {
     const data = req.body;
@@ -37,7 +37,7 @@ router.post("/admin", async (req, res) => {
             });
 
             await sendMessageForWebhook(
-              "weebhook url",
+              "webhook",
               `Yeni Bir Key Oluşturuldu. ||** ${tkn} **||. Kullanıcı İsmi **${data.username}**`,
               "Admin-LOG"
             );
@@ -68,8 +68,8 @@ router.post("/admin", async (req, res) => {
 router.post("/login", async (req, res) => {
     const data = req.body;
     try {
-     if (data.username && data.key && data.loginType) {
-        const userData = await User.findOne({ key: data.key, username: data.username });
+     if (data.key && data.loginType) {
+        const userData = await User.findOne({ key: data.key });
 
         if(userData) {
             res.send({
@@ -78,14 +78,14 @@ router.post("/login", async (req, res) => {
             });
 
             await User.findOneAndUpdate(
-              { key: data.key, username: data.username },
+              { key: data.key },
               { $inc: { logined: 1 } },
               { upsert: true }
             );
 
             await sendMessageForWebhook(
-               "weebhook url",
-              `Mevcut Bir Keye Giriş Yapıldı. Kullanıcı İsmi **${data.username}** . Kullanılan Key Türü  **${data.loginType}**. Toplam Giriş Sayısı ${userData.logined + 1}.`,
+              "webhook",
+              `Mevcut Bir Keye Giriş Yapıldı. Kullanıcı İsmi **${userData.username}** . Kullanılan Key Türü  **${data.loginType}**. Toplam Giriş Sayısı ${userData.logined + 1}.`,
               "Login-LOG"
             );
         } else {
